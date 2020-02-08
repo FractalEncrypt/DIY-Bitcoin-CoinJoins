@@ -1,4 +1,26 @@
 PSBT Workflow
+
+For a multi-participant CoinJoin round it is best to pre-agree on an amount to mix
+Assuming participants would like to have outputs amounts of 0.1 BTC each
+- each participant should do a self CoinJoin to pre-mix UTXOs into outputs that are 0.1 BTC and (equal pairs) of change outputs
+- account for any fees you may wish to pay on subsequent mixing rounds
+- each "round" is it's own transaction on chain
+
+##1. Listunspent
+## this returns a list of all your unspent outputs (UTXOs)
+## we are going to need the "txid" and "vout" info for each pre-mixed UTXO to add to our CoinJoin
+listunspent
+
+- Add the values of the UTXOs to coinjoin
+  - subtract an amount for the fees (Fees = F)
+  - Divide the remaining value by 2
+    - (UTXO1+UTXO2) = X
+    - (X-F)/2 = CoinJoin_Output
+    
+##getnewaddress - we're going to need 10 new receive addresses
+##run getnewaddress 10 times and paste each address into raw transaction template below
+getnewaddress
+
 ##1. Createpsbt
 createpsbt \
 '[{"txid": "txid1", "vout": vout1},
@@ -11,16 +33,16 @@ createpsbt \
 {"txid": "txid8", "vout": vout8},
 {"txid": "txid9", "vout": vout9},
 {"txid": "txid10", "vout": vout10}]' \
-'{"address1": amount1,
-"address2": amount2,
-"address3": amount3,
-"address4": amount4,
-"address5": amount5,
-"address6": amount6,
-"address7": amount7,
-"address8": amount8,
-"address9": amount9,
-"address10": amount10}'
+'{"address1": CoinJoin_Output,
+"address2": CoinJoin_Output,
+"address3": CoinJoin_Output,
+"address4": CoinJoin_Output,
+"address5": CoinJoin_Output,
+"address6": CoinJoin_Output,
+"address7": CoinJoin_Output,
+"address8": CoinJoin_Output,
+"address9": CoinJoin_Output,
+"address10": CoinJoin_Output}'
 
 ##Place the raw hex of PSBT_1 for above transaction below;
 PSBT_1rawHex
@@ -33,10 +55,10 @@ createpsbt \
 '[{"txid": "txid1", "vout": vout1},
 {"txid": "txid2", "vout": vout2},
 {"txid": "txid3", "vout": vout3}, ...]' \
-'{"address1": amount1,
-"address2": amount2,
-"address3": amount3,
-"address4": amount4}'
+'{"address1": CoinJoin_Output,
+"address2": CoinJoin_Output,
+"address3": CoinJoin_Output,
+"address4": CoinJoin_Output}'
 
 ##Place raw hex of PSBT_2 for above tx below
 PSBT_2rawHex
