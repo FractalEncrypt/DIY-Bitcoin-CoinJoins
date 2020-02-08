@@ -101,7 +101,7 @@ Unequal CoinJoin Outputs
 - Assume total value of inputs = 0.5 BTC
 - Assume different individual value outputs = 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.025, 0.025
     - 8 coinjoined outputs are created with different values
-    - Each value is always created as a pair
+    - Each value is always created as a pair (or multiples)
  - The more possible combinations between input and output the better for breaking deterministic heuristics
 - even amounts of inputs and outputs in multiple rounds would be required for best practices
     
