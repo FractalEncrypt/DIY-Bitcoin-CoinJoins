@@ -1,11 +1,16 @@
 PSBT Workflow
 
-For a multi-participant CoinJoin round it is best to pre-agree on an amount to mix
-Assuming participants would like to have outputs amounts of 0.1 BTC each
+This workflow uses Partially-Signed Bitcoin Transactions to facilitate multi-user CoinJoins
+
+For a multi-user CoinJoin round it is best to pre-agree on an amount to mix
+Assuming participants have agreed that regardless of the amounts/number of individual inputs; output amount will be 0.1 BTC each
 - each participant should do a self CoinJoin to pre-mix UTXOs into outputs that are 0.1 BTC and (equal pairs) of change outputs
 - This is your Tx0 (a concept from the amazing Samourai team)
 - We all have equal amounts going into and coming out of the mix
-- account for any fees you may wish to pay on subsequent mixing rounds
+- account for any fees you may wish to pay on subsequent mixing rounds 
+- (meaning each user will want to have tx0 outputs from a self CoinJoin of at least 0.10000150.
+- The extra 0.00000150 is to pay the fee and so we get eactly 0.1 mix outputs from the next round)
+- Fees may be less, they are based on total inputs and outputs in your PSBT
 - each "round" is it's own transaction on chain
 
 ##1. Listunspent
