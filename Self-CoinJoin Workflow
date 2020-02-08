@@ -1,0 +1,53 @@
+Self-CoinJoin Workflow
+##1. Listunspent
+## this returns a list of all your unspent outputs (UTXOs)
+## we are going to need the "txid" and "vout" info for each UTXO
+listunspent
+
+- Add the values of the UTXOs to coinjoin
+  - subtract an amount for the fees (Fees = F)
+  - Divide the remaining value by 2
+    - (UTXO1+UTXO2) = X
+    - (X-F)/2 = CoinJoin_Output
+    
+##getnewaddress - we're going to need 10 new receive addresses
+##run getnewaddress 10 times and paste each address into raw transaction template below
+getnewaddress
+
+## Createrawtransaction
+createrawtransaction \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4},
+{"txid": "txid5", "vout": vout5},
+{"txid": "txid6", "vout": vout6},
+{"txid": "txid7", "vout": vout7},
+{"txid": "txid8", "vout": vout8},
+{"txid": "txid9", "vout": vout9},
+{"txid": "txid10", "vout": vout10}]' \
+'{"address1": CoinJoin_Output,
+"address2": CoinJoin_Output,
+"address3": CoinJoin_Output,
+"address4": CoinJoin_Output,
+"address5": CoinJoin_Output,
+"address6": CoinJoin_Output,
+"address7": CoinJoin_Output,
+"address8": CoinJoin_Output,
+"address9": CoinJoin_Output,
+"address10": CoinJoin_Output}'
+
+## - This will return a raw transaction hex ; rawTxHex
+
+##We now need to sign this transaction
+  - signrawtransactionwithwallet rawTxHex
+  - should return "complete" :true
+  
+## Let's decode our raw transaction hex to see if our inputs and outputs are all showing as expected
+Decoderawtransaction rawTxHex
+
+## Now we can broadcast our transaction to the newtwork
+Sendrawtransaction rawTxHex
+
+- This returns a tx id
+- Paste ID into block explorer
