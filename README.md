@@ -1,6 +1,8 @@
 # DIY-Bitcoin-CoinJoins
 Bitcoin Privacy For All - Simple DIY CoinJoins 
 
+This is a work in progress, all input is greatly appreciated!
+
 # Objectives
 
 Objectives
