@@ -16,7 +16,7 @@ Objectives
 - Outline the PSBT workflow for multiple participant CoinJoins
 - Outline generational CoinJoins with new incoming unmixed UTXOs (mix of 5, 3 remix, 2 new)
 - Automation through code
-  - plugin for Bitcoin Core?
+  - plugin /on top of Bitcoin Core(?)
   - View all UTXOs
   - View UTXO status (Unmixed, Mixed, Remixed)
   - Automation of all UTXO mixing, creation of even-value change outputs
