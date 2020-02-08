@@ -1,0 +1,63 @@
+## This is a template for a 2-input 2-output self coinjoin
+
+createpsbt \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},]' \
+'{"address1": amount1,
+"address2": amount2}'
+
+## or
+
+createrawtransaction \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},]' \
+'{"address1": amount1,
+"address2": amount2}'
+
+
+## This is a template for a 10-input 10-output self coinjoin
+createpsbt \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4},
+{"txid": "txid5", "vout": vout5},
+{"txid": "txid6", "vout": vout6},
+{"txid": "txid7", "vout": vout7},
+{"txid": "txid8", "vout": vout8},
+{"txid": "txid9", "vout": vout9},
+{"txid": "txid10", "vout": vout10}]' \
+'{"address1": amount1,
+"address2": amount2,
+"address3": amount3,
+"address4": amount4,
+"address5": amount5,
+"address6": amount6,
+"address7": amount7,
+"address8": amount8,
+"address9": amount9,
+"address10": amount10}'
+
+## or
+
+createrawtransaction \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4},
+{"txid": "txid5", "vout": vout5},
+{"txid": "txid6", "vout": vout6},
+{"txid": "txid7", "vout": vout7},
+{"txid": "txid8", "vout": vout8},
+{"txid": "txid9", "vout": vout9},
+{"txid": "txid10", "vout": vout10}]' \
+'{"address1": amount1,
+"address2": amount2,
+"address3": amount3,
+"address4": amount4,
+"address5": amount5,
+"address6": amount6,
+"address7": amount7,
+"address8": amount8,
+"address9": amount9,
+"address10": amount10}'
