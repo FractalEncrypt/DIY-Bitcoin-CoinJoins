@@ -22,9 +22,11 @@ createpsbt \
 "address9": amount9,
 "address10": amount10}'
 
-##Place raw hex of pbst for above tx below
+##Place the raw hex of PSBT_1 for above transaction below;
+PSBT_1rawHex
 
 ##Decodepsbt and double check 
+Decodepsbt PSBT_1rawHex
 
 ###PSBT_2
 createpsbt \
@@ -36,15 +38,22 @@ createpsbt \
 "address3": amount3,
 "address4": amount4}'
 
-##Place raw hex of pbst for above tx below
+##Place raw hex of PSBT_2 for above tx below
+PSBT_2rawHex
+
+##Decodepsbt and double check 
+Decodepsbt PSBT_1rawHex
 
 ##2. Have individual users send their PSBTs to coordinator
 ##3. Coordinator uses joinpsbts to join the separate PSBTs into one
 joinpsbts '["",""]'
+ ##This outputs as; Joined_psbt_raw_hex
+
 
 ##3a. Decodepsbt and double check fees (all the way at the bottom), if fees are too high, you messed something up
+
 ##4. Coordinator sends the joined PSBT back to each user to sign with walletprocesspsbt
-walletprocesspsbt psbt_raw_hex
+walletprocesspsbt Joined_psbt_raw_hex
 ##walletprocessedpsbt from Wallet 1
 
 ##walletprocessedpsbt from Wallet 2
@@ -52,7 +61,9 @@ walletprocesspsbt psbt_raw_hex
 
 ##5. Once all users have signed/processed the joined PSBT, coordinator uses combinepsbt.
 combinepsbt '["",""]'
+
 ##6. Coordinator uses finalizepsbt and then transmits to the network using sendrawtransaction.
 finalizepsbt psbt_raw_hex
+
 ##7 This outputs the raw transaction hex
 sendrawtransaction Raw_Tx-Hex
