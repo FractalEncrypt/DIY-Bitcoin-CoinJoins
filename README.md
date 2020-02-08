@@ -72,7 +72,7 @@ Creating a 10-Input/10-Output CoinJoin Transaction
   - we are going to need the "txid" and "vout" info for each UTXO
 - Add the values of the UTXOs to coinjoin
   - subtract an amount for the fees (Fees = F)
-  - Divide the remaining value by 2
+  - Divide the remaining value by 10
     - (UTXO1+UTXO2) = X
     - (X-F)/10 = CoinJoin_Output
 - getnewaddress
