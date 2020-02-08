@@ -122,12 +122,12 @@ Sometimes (or most times) you will be unable to divide your unspent UTXOs evenly
 # PSBT workflow for multiple participant CoinJoins
 
 PSBT workflow for multiple participant CoinJoins
-- 1. Createpsbt
-- 2. Have individual users send their PSBTs to coordinator
-- 3. Coordinator uses joinpsbts to join the separate PSBTs into one
-- 4. Coordinator sends joined PSBT back to users
-- 5. Each user signs with walletprocesspsbt and sends back to coordinator
-- 6. Coordinator uses combinepsbt.
-- 7. Coordinator uses finalizepsbt and then transmits to the network using sendrawtransaction.
+ 1. Createpsbt
+ 2. Have individual users send their PSBTs to coordinator
+ 3. Coordinator uses joinpsbts to join the separate PSBTs into one
+ 4. Coordinator sends joined PSBT back to users
+ 5. Each user signs with walletprocesspsbt and sends back to coordinator
+ 6. Coordinator uses combinepsbt.
+ 7. Coordinator uses finalizepsbt and then transmits to the network using sendrawtransaction.
  
-When you use decodepsbt on your combined PSBT you can view the fees that you will be paying. TRIPLE CHECK THIS - is it what you expect?
+Use decodepsbt on the combined PSBT to view the fees that you will be paying. TRIPLE CHECK THIS - is it what you expect?
