@@ -6,10 +6,10 @@ This is a work in progress, all input is greatly appreciated!
 # Objectives
 
 Objectives
-- Document some basic CoinJoin ideas
-- Outline Tx0 concept
+- Document some random thoughts on CoinJoins in hopes of making this accessible to others
 - Outline a simple 2-input/2-output self CoinJoin
 - Outline a 10-input/10-output self CoinJoin
+- Outline Tx0 concept
 - Outline equal outputs
 - Outline unequal outputs
 - Outline equal change outputs
@@ -35,7 +35,7 @@ Objectives
  - 1500 sats for 10-in/10-out CoinJoin transactions
 - Testnet ethos- Do not use these methods on mainnet without community review of these ideas.
   - The best way to learn is by doing. 
-    - Play on testnet, do at least 5 of these manually
+    - Play on testnet, do a few rounds of these manual CoinJoins to build your skills
     - Practice may not make perfect, but it'll get you more comfortable with the process
 
 # Creating a simple 2-Input/2-Output CoinJoin Transaction
