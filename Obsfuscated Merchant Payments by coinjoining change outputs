@@ -3,7 +3,7 @@
 Obsfuscated Merchant Payments by coinjoining "change outputs"
 
 When making payment to a merchant, create the transaction so that;
- 1. You can double the payment amount so you can have 2 equal outputs
+ 1. You can double the payment amount to you can have 2 equal outputs
   a. This would likely result in the need to create a change address
      This change should be divided in 2 equal outputs, so the transaction has
      the payment, a matching amount output, and a pair of change outputs
@@ -11,4 +11,9 @@ When making payment to a merchant, create the transaction so that;
  2. Simply make the payment, and then any change from the UTXOs should be divided
     into 2 or 3 equal output amounts
  
- 3. use the chance to consolidate some UTXOs if needed, and create smaller, but still paired equal output amounts
+ 3. Use the chance to consolidate multiple UTXOs if needed, and create smaller, but still paired equal output amounts
+ - For example say the user has 1 BTC available across multiple UTXOs that s/he would like to consolidate.
+  - User needs to make a merchant payment of 0.2 BTC
+  - User can combine all UTXOs as transaction inputs equaling 1 BTC
+  - User can create 5 equal outputs of 0.2 BTC, one of these goes directly to the merchant in this transaction, 
+  the other four outputs of 0.2 BTC go to new unused BTC addresses all controlled by the user.
