@@ -73,7 +73,7 @@ Creating a 10-Input/10-Output CoinJoin Transaction
 - Add the values of the UTXOs to coinjoin
   - subtract an amount for the fees (Fees = F)
   - Divide the remaining value by 10
-    - (UTXO1+UTXO2) = X
+    - (UTXO1+UTXO2+UTXO3+UTXO4+UTXO5+UTXO6+UTXO7+UTXO8+UTXO9+UTXO10+) = X
     - (X-F)/10 = CoinJoin_Output
 - getnewaddress
   - we're going to need 2 new receive addresses
