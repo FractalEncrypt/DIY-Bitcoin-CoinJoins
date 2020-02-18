@@ -1,0 +1,41 @@
+## CoinJoin Tutorial Workflow
+1. listunspent
+
+##Add input values, Subtract fee amount, divide by number of inputs
+
+ ##To get the CoinJoinAmount, we will take the total value of inputs and divide by 4
+## CoinJoinAmount = 
+## CoinJoinAmount = 
+
+##Copy/Paste the below 4 times
+2. getnewaddress "" "bech32"
+
+##1.Create Raw Transaction
+ ##- this returns RawHex of tx
+ ##Use CoinJoinAmount from step 1, 
+ 
+createrawtransaction \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4}]' \
+'{"address1": CoinJoinAmount,
+"address2": CoinJoinAmount,
+"address3": CoinJoinAmount,
+"address4": CoinJoinAmount}'
+
+
+##Place raw hex of rawtransaction for above tx below
+RawHex
+
+
+##Decode the raw transaction to double check 
+Decoderawtransaction RawHex
+
+##Sign Transaction
+signrawtransactionwithwallet RawHex
+##- should return "complete" :true
+
+Sendrawtransaction
+##- This returns a tx id
+##-Paste ID into block explorer here https://live.blockcypher.com/btc-testnet/
