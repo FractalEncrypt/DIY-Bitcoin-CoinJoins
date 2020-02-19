@@ -1,10 +1,14 @@
 PSBT Workflow
-##0. Tx0 
+##Pre-Mix
 ##createrawtransaction with equal outputs in the desired CoinJoinAmount + Fee
 ##For this example, we're using an amount participants have all agreed, a desired equal output amounts of 0.0125 BTC
-## We will do 2 series of PSBT CoinJoins, but you can do this for any amount. To create the desired outputs, first users 
-##must create equal inputs to avoid unmixed change amounts. Our first round amount will be 0.01250650, our second round
-##will use inputs of 0.01250325
+##We will do 2 series of PSBT CoinJoins, but you can do as many mixing rounds as you want. 
+
+##To create the desired outputs, users must premix their random UTXOs into "pre-agreed upon equal amount UTXOs" 
+##(to avoid unmixed change amounts. )
+##Our Pre-Mix Round amount will be 0.01250650
+##Our First Round output amount will be 0.01250325
+##Our Second Round of mixing will use outputs of 0.125
 
 createrawtransaction \
 '[{"txid": "txid1", "vout": vout1},
