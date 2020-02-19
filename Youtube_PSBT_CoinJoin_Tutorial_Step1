@@ -1,0 +1,67 @@
+PSBT Workflow
+##0. Tx0 
+##createrawtransaction with equal outputs in the desired CoinJoinAmount + Fee
+##For this example, we're using an amount participants have all agreed, a desired equal output amounts of 0.0125 BTC
+## We will do 2 series of PSBT CoinJoins, but you can do this for any amount. To create the desired outputs, first users 
+##must create equal inputs to avoid unmixed change amounts. Our first round amount will be 0.01250650, our second round
+##will use inputs of 0.01250325
+
+createrawtransaction \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4}]' \
+'{"address1": CoinJoinAmount,
+"address2": CoinJoinAmount,
+"address3": CoinJoinAmount,
+"address4": CoinJoinAmount,
+"address5": CoinJoinAmount,
+"address6": CoinJoinAmount}'
+
+
+##1. Createpsbt
+createpsbt \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4}]' \
+'{"address1": CoinJoin_Output,
+"address2": CoinJoin_Output,
+"address3": CoinJoin_Output,
+"address4": CoinJoin_Output}'
+
+##Place raw hex of PSBT_1 for above tx below
+
+##Decodepsbt and double check 
+
+###PSBT_2
+createpsbt \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4}]' \
+'{"address1": CoinJoinAmount,
+"address2": CoinJoinAmount,
+"address3": CoinJoinAmount,
+"address4": CoinJoinAmount}'
+
+##Place raw hex of pbst for above tx below
+
+##2. Have individual users send their PSBTs to coordinator
+##3. Coordinator uses joinpsbts to join the separate PSBTs into one
+joinpsbts '["",""]'
+
+##3a. Decodepsbt and double check fees (all the way at the bottom), if fees are too high, you messed something up
+##4. Coordinator sends the joined PSBT back to each user to sign with walletprocesspsbt
+walletprocesspsbt psbt_raw_hex
+##walletprocessedpsbt from Wallet 1
+
+##walletprocessedpsbt from Wallet 2
+
+
+##5. Once all users have signed/processed the joined PSBT, coordinator uses combinepsbt.
+combinepsbt '["",""]'
+##6. Coordinator uses finalizepsbt and then transmits to the network using sendrawtransaction.
+finalizepsbt psbt_raw_hex
+##7 This outputs the raw transaction hex
+sendrawtransaction Raw_Tx-Hex
