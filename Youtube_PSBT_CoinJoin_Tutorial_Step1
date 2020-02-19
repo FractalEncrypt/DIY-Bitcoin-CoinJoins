@@ -10,6 +10,12 @@ PSBT Workflow
 ##Our First Round output amount will be 0.01250325
 ##Our Second Round of mixing will use outputs of 0.125
 
+##First we need to create 6 new addresses for the Pre-Mixed coins to be sent to.
+##Copy/paste this command 6 times, paste results into address1 - address6
+
+getnewaddress "" "bech32"
+
+
 createrawtransaction \
 '[{"txid": "txid1", "vout": vout1},
 {"txid": "txid2", "vout": vout2},
@@ -19,11 +25,16 @@ createrawtransaction \
 "address2": CoinJoinAmount,
 "address3": CoinJoinAmount,
 "address4": CoinJoinAmount,
-"address5": CoinJoinAmount,
-"address6": CoinJoinAmount}'
+"address5": CoinJoinAmount2,
+"address6": CoinJoinAmount2}'
 
 
 ##1. Createpsbt
+##First we need to create 4 new addresses for the Pre-Mixed coins to be sent to.
+##Copy/paste this command 4 times, paste results into address1 - address4
+
+getnewaddress "" "bech32"
+
 createpsbt \
 '[{"txid": "txid1", "vout": vout1},
 {"txid": "txid2", "vout": vout2},
@@ -39,6 +50,11 @@ createpsbt \
 ##Decodepsbt and double check 
 
 ###PSBT_2
+##First we need to create 4 new addresses for the Pre-Mixed coins to be sent to.
+##Copy/paste this command 4 times, paste results into address1 - address4
+
+getnewaddress "" "bech32"
+
 createpsbt \
 '[{"txid": "txid1", "vout": vout1},
 {"txid": "txid2", "vout": vout2},
@@ -68,4 +84,4 @@ combinepsbt '["",""]'
 ##6. Coordinator uses finalizepsbt and then transmits to the network using sendrawtransaction.
 finalizepsbt psbt_raw_hex
 ##7 This outputs the raw transaction hex
-sendrawtransaction Raw_Tx-Hex
+sendrawtransaction Raw_Tx_Hex
