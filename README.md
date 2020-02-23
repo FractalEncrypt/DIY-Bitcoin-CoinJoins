@@ -9,7 +9,7 @@ Objectives
 - Document some random thoughts on CoinJoins in hopes of making this accessible to others
 - Outline a simple 2-input/2-output self CoinJoin
 - Outline a 10-input/10-output self CoinJoin
-- Outline Tx0 concept
+- Outline Pre-Mix concept
 - Outline equal outputs
 - Outline unequal outputs
 - Outline equal change outputs
