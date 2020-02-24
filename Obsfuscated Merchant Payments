@@ -1,0 +1,39 @@
+##Take the Merchant's bitcoin address and paste it into MerchantAddress
+##Take the amount of the merchant payment and place in CoinJoinAmount1
+##run listunspent and review UTXOs to see what can be used to create the CoinJoin transaction
+##Add the value of 2 UTXOs and subtract a fee amount (500 sats for this example)
+##Place the txid and vouts into the transaction template
+##Subtract CoinJoinAmount1 from UTXO value 2 or more times
+##Divide remainder by 2, Place this amount into CoinJoinAmount2
+##(this is to CoinJoin any remaining change)  
+
+##I'm using the Coingate testnet store for this example - https://example.coingate.com/
+
+##CoinJoinAmount1 = C
+##C x 3 = D
+##UTXO1 + UTXO2 = E = 
+##E-D = i = 
+##i - feeAmount = Q = 
+##Q/2 = CoinJoinAmount2
+##CoinJoinAmount2 = 
+
+
+##MerchantAmount = 
+##MerchantAmount = CoinJoinAmount1
+
+listunspent
+
+createrawtransaction \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2}]' \
+'{"MerchantAddress": CoinJoinAmount1,
+"address2": CoinJoinAmount1,
+"address3": CoinJoinAmount1,
+"address4": CoinJoinAmount2,
+"address5": CoinJoinAmount2}'
+
+getnewaddress "" "p2sh-segwit"
+
+decoderawtransaction
+signrawtransactionwithwallet
+sendrawtransaction
