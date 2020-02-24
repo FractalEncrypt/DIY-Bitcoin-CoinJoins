@@ -3,7 +3,7 @@
 ##run listunspent and review UTXOs to see what can be used to create the CoinJoin transaction
 ##Add the value of 2 UTXOs and subtract a fee amount (500 sats for this example)
 ##Place the txid and vouts into the transaction template
-##Subtract CoinJoinAmount1 from UTXO value 2 or more times
+##Subtract CoinJoinAmount1 from UTXO value 2 or more times (we use 3 times for this example)
 ##Divide remainder by 2, Place this amount into CoinJoinAmount2
 ##(this is to CoinJoin any remaining change)  
 
