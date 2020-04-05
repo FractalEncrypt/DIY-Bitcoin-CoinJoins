@@ -1,0 +1,68 @@
+PSBT Workflow - 2nd Round
+##Our Second round of mixing will use outputs of 0.0125, paste this into CoinJoinAmount
+
+##1. Createpsbt
+##Get 4 new addresses. Copy/paste this command 4 times, paste results into address1 - address4
+
+getnewaddress "" "bech32"
+
+createpsbt \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4}]' \
+'{"address1": 0.0125,
+"address2": 0.0125,
+"address3": 0.0125,
+"address4": 0.0125}'
+
+##Place raw hex of pbst for above tx below
+
+##Decodepsbt and double check 
+
+###PSBT_2
+##Get 4 new addresses. Copy/paste this command 4 times, paste results into address1 - address4
+
+getnewaddress "" "bech32"
+
+createpsbt \
+'[{"txid": "txid1", "vout": vout1},
+{"txid": "txid2", "vout": vout2},
+{"txid": "txid3", "vout": vout3},
+{"txid": "txid4", "vout": vout4}]' \
+'{"address1": 0.0125,
+"address2": 0.0125,
+"address3": 0.0125,
+"address4": 0.0125}'
+
+
+##Place raw hex of pbst for above tx below
+
+##2. Have individual users send their PSBTs to coordinator
+##3. Coordinator uses joinpsbts to join the separate PSBTs into one
+joinpsbts '["",""]'
+joinpsbts '["",""]'
+
+##3a. Decodepsbt and double check fees (all the way at the bottom), if fees are too high, you messed something up
+##4. Coordinator sends the joined PSBT back to each user to sign with walletprocesspsbt
+walletprocesspsbt psbt_raw_hex true ALL false
+
+##walletprocessedpsbt from Wallet 1
+
+##walletprocessedpsbt from Wallet 2
+
+
+##5. Once all users have signed/processed the joined PSBT, coordinator uses combinepsbt.
+combinepsbt '["",""]'
+combinepsbt '["",""]'
+
+This returns a CombinedPSBT_rawHex
+
+##5a. Decode the PSBT to make sure everything is correct
+Decodepsbt CombinedPSBT_rawHex
+
+##6. Coordinator uses finalizepsbt and then transmits to the network using sendrawtransaction.
+finalizepsbt psbt_raw_hex
+
+##7 This outputs the raw transaction hex
+sendrawtransaction Raw_Tx-Hex
